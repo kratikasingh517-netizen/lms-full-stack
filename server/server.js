@@ -44,8 +44,4 @@ app.use('/api/educator', express.json(), educatorRouter)
 app.use('/api/course', express.json(), courseRouter)
 
 app.use('/api/user', express.json(), userRouter)
-
-
-// Export for Vercel Serverless
-export default app
 export default app
