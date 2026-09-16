@@ -48,6 +48,14 @@
     color: #0d1117;
   }
 
+  h4 {
+    font-size: 1.05em;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #0d1117;
+  }
+
   p {
     margin-bottom: 16px;
   }
@@ -172,13 +180,9 @@
   <span class="badge badge-cloudinary">Cloudinary</span>
 </p>
 
-<p>
-A full-stack Learning Management System (LMS) built with React, Vite, Node.js, Express, MongoDB, Clerk, Stripe, and Cloudinary.
-</p>
+<p>A full-stack Learning Management System (LMS) built with React, Vite, Node.js, Express, MongoDB, Clerk, Stripe, and Cloudinary.</p>
 
-<p>
-The platform provides separate experiences for students and educators. Students can explore and purchase courses, track their learning progress, and submit ratings. Educators can create and manage courses, view enrolled students, and access dashboard information.
-</p>
+<p>The platform provides separate experiences for students and educators. Students can explore and purchase courses, track their learning progress, and submit ratings. Educators can create and manage courses, view enrolled students, and access dashboard information.</p>
 
 <hr>
 
@@ -909,6 +913,4 @@ View Enrolled Students</code></pre>
 
 <hr>
 
-<h2 id="deployment" class="section-anchor">🌐 Deployment</h2>
-
-<p>Both frontend and backend contain Vercel configuration files:</p>
+<h2 id="deployment" class
