@@ -1,323 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LMS Full Stack - README</title>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+# LMS Full Stack
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.7;
-    color: #24292e;
-    background: #ffffff;
-    padding: 40px 20px;
-    max-width: 980px;
-    margin: 0 auto;
-  }
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-Backend-68A063?logo=node.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-4DB33D?logo=mongodb&logoColor=white)
+![Clerk](https://img.shields.io/badge/Clerk-Auth-6C47FF)
+![Stripe](https://img.shields.io/badge/Stripe-Payments-635BFF?logo=stripe&logoColor=white)
+![Cloudinary](https://img.shields.io/badge/Cloudinary-Media-3448C5?logo=cloudinary&logoColor=white)
 
-  h1 {
-    font-size: 2.2em;
-    font-weight: 700;
-    border-bottom: 2px solid #e1e4e8;
-    padding-bottom: 12px;
-    margin-bottom: 20px;
-    color: #0d1117;
-  }
+A full-stack Learning Management System (LMS) built with React, Vite, Node.js, Express, MongoDB, Clerk, Stripe, and Cloudinary.
 
-  h2 {
-    font-size: 1.6em;
-    font-weight: 600;
-    border-bottom: 1px solid #e1e4e8;
-    padding-bottom: 8px;
-    margin-top: 40px;
-    margin-bottom: 16px;
-    color: #0d1117;
-  }
+The platform provides separate experiences for students and educators. Students can explore and purchase courses, track their learning progress, and submit ratings. Educators can create and manage courses, view enrolled students, and access dashboard information.
 
-  h3 {
-    font-size: 1.25em;
-    font-weight: 600;
-    margin-top: 28px;
-    margin-bottom: 12px;
-    color: #0d1117;
-  }
+---
 
-  h4 {
-    font-size: 1.05em;
-    font-weight: 600;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: #0d1117;
-  }
+##  Table of Contents
 
-  p {
-    margin-bottom: 16px;
-  }
+| # | Section |
+|---|---------|
+| 1 | [Features](#-features) |
+| 2 | [Tech Stack](#-tech-stack) |
+| 3 | [Project Structure](#-project-structure) |
+| 4 | [Application Architecture](#-application-architecture) |
+| 5 | [Authentication](#-authentication) |
+| 6 | [API Documentation](#-api-documentation) |
+| 7 | [Stripe Integration](#-stripe-integration) |
+| 8 | [Webhooks](#-webhooks) |
+| 9 | [Cloudinary](#-cloudinary) |
+| 10 | [MongoDB](#-mongodb) |
+| 11 | [Environment Variables](#-environment-variables) |
+| 12 | [Installation](#-installation) |
+| 13 | [Running the Full Project](#-running-the-full-project) |
+| 14 | [Main User Flow](#-main-user-flow) |
+| 15 | [Deployment](#-deployment) |
+| 16 | [Security](#-security) |
+| 17 | [Development Checklist](#-development-checklist) |
+| 18 | [Troubleshooting](#-troubleshooting) |
+| 19 | [Screenshots](#-screenshots) |
+| 20 | [Future Improvements](#-future-improvements) |
+| 21 | [Contributing](#-contributing) |
+| 22 | [License](#-license) |
+| 23 | [Author](#-author) |
 
-  a {
-    color: #0366d6;
-    text-decoration: none;
-  }
+---
 
-  a:hover {
-    text-decoration: underline;
-  }
+##  Features
 
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 16px 0 24px 0;
-    font-size: 0.95em;
-  }
+###  Student Features
 
-  th, td {
-    border: 1px solid #d0d7de;
-    padding: 10px 14px;
-    text-align: left;
-  }
+| Feature | Description |
+|---------|-------------|
+| User Authentication | Secure authentication with Clerk |
+| Browse Courses | Explore all available courses |
+| Course Details | View individual course details |
+| Purchase Courses | Buy courses using Stripe |
+| Enrolled Courses | View all enrolled courses |
+| Track Progress | Monitor course learning progress |
+| Update Progress | Update course progress |
+| View Progress | View current course progress |
+| Rate Courses | Submit ratings for courses |
+| Learning Interface | Dedicated student learning interface |
+| Video/Content Support | Course video and content support |
 
-  th {
-    background-color: #f6f8fa;
-    font-weight: 600;
-  }
+###  Educator Features
 
-  tr:nth-child(even) {
-    background-color: #f9fafb;
-  }
+| Feature | Description |
+|---------|-------------|
+| Authentication | Educator authentication and authorization |
+| Role Upgrade | Upgrade user role to educator |
+| Dashboard | Access educator dashboard |
+| Create Courses | Create and publish new courses |
+| Upload Images | Upload course images |
+| View Courses | View educator's own courses |
+| View Students | View enrolled students |
+| Manage Content | Manage course content |
 
-  tr:hover {
-    background-color: #f1f3f5;
-  }
+---
 
-  pre {
-    background-color: #f6f8fa;
-    border: 1px solid #d0d7de;
-    border-radius: 6px;
-    padding: 16px;
-    overflow-x: auto;
-    margin: 16px 0 24px 0;
-    font-size: 0.88em;
-    line-height: 1.5;
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  }
+##  Tech Stack
 
-  code {
-    background-color: rgba(175, 184, 193, 0.2);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-    font-size: 0.88em;
-  }
+### Frontend
 
-  pre code {
-    background: none;
-    padding: 0;
-    border-radius: 0;
-    font-size: 1em;
-  }
+| Technology | Purpose |
+|------------|---------|
+| React 18 | UI development |
+| Vite | Frontend tooling |
+| React Router | Client-side routing |
+| Clerk React | Authentication |
+| Axios | API requests |
+| Tailwind CSS | Styling |
+| Quill | Rich text/course content editor |
+| React YouTube | YouTube/video integration |
+| RC Progress | Progress indicators |
+| React Simple Star Rating | Course ratings |
+| React Toastify | Notifications |
+| Humanize Duration | Duration formatting |
+| Uniqid | Unique ID generation |
 
-  blockquote {
-    border-left: 4px solid #d0d7de;
-    padding: 8px 16px;
-    color: #57606a;
-    background: #f6f8fa;
-    margin: 16px 0;
-    border-radius: 0 6px 6px 0;
-  }
+### Backend
 
-  ul, ol {
-    margin: 12px 0 20px 24px;
-  }
+| Technology | Purpose |
+|------------|---------|
+| Node.js | Backend runtime |
+| Express.js | REST API |
+| MongoDB | Database |
+| Mongoose | MongoDB ODM |
+| Clerk Express | Authentication |
+| Stripe | Payments |
+| Cloudinary | Media storage |
+| Multer | File uploads |
+| CORS | Cross-origin requests |
+| dotenv | Environment variables |
+| Svix | Webhook support |
+| bcrypt | Password hashing support |
+| JSON Web Token | Token-based authentication support |
+| Nodemon | Development server |
 
-  li {
-    margin-bottom: 6px;
-  }
+---
 
-  hr {
-    border: none;
-    border-top: 1px solid #e1e4e8;
-    margin: 32px 0;
-  }
+## Project Structure
 
-  .badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 0.8em;
-    font-weight: 600;
-    margin-right: 6px;
-    color: #fff;
-  }
-
-  .badge-react { background: #61dafb; color: #000; }
-  .badge-node { background: #68a063; }
-  .badge-mongo { background: #4db33d; }
-  .badge-stripe { background: #635bff; }
-  .badge-clerk { background: #6c47ff; }
-  .badge-cloudinary { background: #3448c5; }
-
-  .section-anchor {
-    scroll-margin-top: 20px;
-  }
-</style>
-</head>
-<body>
-
-<h1>LMS Full Stack</h1>
-
-<p>
-  <span class="badge badge-react">React</span>
-  <span class="badge badge-node">Node.js</span>
-  <span class="badge badge-mongo">MongoDB</span>
-  <span class="badge badge-clerk">Clerk</span>
-  <span class="badge badge-stripe">Stripe</span>
-  <span class="badge badge-cloudinary">Cloudinary</span>
-</p>
-
-<p>A full-stack Learning Management System (LMS) built with React, Vite, Node.js, Express, MongoDB, Clerk, Stripe, and Cloudinary.</p>
-
-<p>The platform provides separate experiences for students and educators. Students can explore and purchase courses, track their learning progress, and submit ratings. Educators can create and manage courses, view enrolled students, and access dashboard information.</p>
-
-<hr>
-
-<h2 id="toc">📋 Table of Contents</h2>
-
-<table>
-  <thead>
-    <tr><th>#</th><th>Section</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>1</td><td><a href="#features">Features</a></td></tr>
-    <tr><td>2</td><td><a href="#tech-stack">Tech Stack</a></td></tr>
-    <tr><td>3</td><td><a href="#project-structure">Project Structure</a></td></tr>
-    <tr><td>4</td><td><a href="#architecture">Application Architecture</a></td></tr>
-    <tr><td>5</td><td><a href="#auth">Authentication</a></td></tr>
-    <tr><td>6</td><td><a href="#api">API Documentation</a></td></tr>
-    <tr><td>7</td><td><a href="#stripe">Stripe Integration</a></td></tr>
-    <tr><td>8</td><td><a href="#webhooks">Webhooks</a></td></tr>
-    <tr><td>9</td><td><a href="#cloudinary">Cloudinary</a></td></tr>
-    <tr><td>10</td><td><a href="#mongodb">MongoDB</a></td></tr>
-    <tr><td>11</td><td><a href="#env">Environment Variables</a></td></tr>
-    <tr><td>12</td><td><a href="#installation">Installation</a></td></tr>
-    <tr><td>13</td><td><a href="#running">Running the Full Project</a></td></tr>
-    <tr><td>14</td><td><a href="#user-flow">Main User Flow</a></td></tr>
-    <tr><td>15</td><td><a href="#deployment">Deployment</a></td></tr>
-    <tr><td>16</td><td><a href="#security">Security</a></td></tr>
-    <tr><td>17</td><td><a href="#checklist">Development Checklist</a></td></tr>
-    <tr><td>18</td><td><a href="#troubleshooting">Troubleshooting</a></td></tr>
-    <tr><td>19</td><td><a href="#screenshots">Screenshots</a></td></tr>
-    <tr><td>20</td><td><a href="#future">Future Improvements</a></td></tr>
-    <tr><td>21</td><td><a href="#contributing">Contributing</a></td></tr>
-    <tr><td>22</td><td><a href="#license">License</a></td></tr>
-    <tr><td>23</td><td><a href="#author">Author</a></td></tr>
-  </tbody>
-</table>
-
-<hr>
-
-<h2 id="features" class="section-anchor">🚀 Features</h2>
-
-<h3>👨‍🎓 Student Features</h3>
-
-<table>
-  <thead>
-    <tr><th>Feature</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>User Authentication</td><td>Secure authentication with Clerk</td></tr>
-    <tr><td>Browse Courses</td><td>Explore all available courses</td></tr>
-    <tr><td>Course Details</td><td>View individual course details</td></tr>
-    <tr><td>Purchase Courses</td><td>Buy courses using Stripe</td></tr>
-    <tr><td>Enrolled Courses</td><td>View all enrolled courses</td></tr>
-    <tr><td>Track Progress</td><td>Monitor course learning progress</td></tr>
-    <tr><td>Update Progress</td><td>Update course progress</td></tr>
-    <tr><td>View Progress</td><td>View current course progress</td></tr>
-    <tr><td>Rate Courses</td><td>Submit ratings for courses</td></tr>
-    <tr><td>Learning Interface</td><td>Dedicated student learning interface</td></tr>
-    <tr><td>Video/Content Support</td><td>Course video and content support</td></tr>
-  </tbody>
-</table>
-
-<h3>👨‍🏫 Educator Features</h3>
-
-<table>
-  <thead>
-    <tr><th>Feature</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Authentication</td><td>Educator authentication and authorization</td></tr>
-    <tr><td>Role Upgrade</td><td>Upgrade user role to educator</td></tr>
-    <tr><td>Dashboard</td><td>Access educator dashboard</td></tr>
-    <tr><td>Create Courses</td><td>Create and publish new courses</td></tr>
-    <tr><td>Upload Images</td><td>Upload course images</td></tr>
-    <tr><td>View Courses</td><td>View educator's own courses</td></tr>
-    <tr><td>View Students</td><td>View enrolled students</td></tr>
-    <tr><td>Manage Content</td><td>Manage course content</td></tr>
-  </tbody>
-</table>
-
-<hr>
-
-<h2 id="tech-stack" class="section-anchor">🛠️ Tech Stack</h2>
-
-<h3>Frontend</h3>
-
-<table>
-  <thead>
-    <tr><th>Technology</th><th>Purpose</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>React 18</td><td>UI development</td></tr>
-    <tr><td>Vite</td><td>Frontend tooling</td></tr>
-    <tr><td>React Router</td><td>Client-side routing</td></tr>
-    <tr><td>Clerk React</td><td>Authentication</td></tr>
-    <tr><td>Axios</td><td>API requests</td></tr>
-    <tr><td>Tailwind CSS</td><td>Styling</td></tr>
-    <tr><td>Quill</td><td>Rich text/course content editor</td></tr>
-    <tr><td>React YouTube</td><td>YouTube/video integration</td></tr>
-    <tr><td>RC Progress</td><td>Progress indicators</td></tr>
-    <tr><td>React Simple Star Rating</td><td>Course ratings</td></tr>
-    <tr><td>React Toastify</td><td>Notifications</td></tr>
-    <tr><td>Humanize Duration</td><td>Duration formatting</td></tr>
-    <tr><td>Uniqid</td><td>Unique ID generation</td></tr>
-  </tbody>
-</table>
-
-<h3>Backend</h3>
-
-<table>
-  <thead>
-    <tr><th>Technology</th><th>Purpose</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Node.js</td><td>Backend runtime</td></tr>
-    <tr><td>Express.js</td><td>REST API</td></tr>
-    <tr><td>MongoDB</td><td>Database</td></tr>
-    <tr><td>Mongoose</td><td>MongoDB ODM</td></tr>
-    <tr><td>Clerk Express</td><td>Authentication</td></tr>
-    <tr><td>Stripe</td><td>Payments</td></tr>
-    <tr><td>Cloudinary</td><td>Media storage</td></tr>
-    <tr><td>Multer</td><td>File uploads</td></tr>
-    <tr><td>CORS</td><td>Cross-origin requests</td></tr>
-    <tr><td>dotenv</td><td>Environment variables</td></tr>
-    <tr><td>Svix</td><td>Webhook support</td></tr>
-    <tr><td>bcrypt</td><td>Password hashing support</td></tr>
-    <tr><td>JSON Web Token</td><td>Token-based authentication support</td></tr>
-    <tr><td>Nodemon</td><td>Development server</td></tr>
-  </tbody>
-</table>
-
-<hr>
-
-<h2 id="project-structure" class="section-anchor">📁 Project Structure</h2>
-
-<pre><code>lms-full-stack/
+```text
+lms-full-stack/
 │
 ├── client/
 │   ├── public/
@@ -363,15 +166,17 @@
 │   └── ...
 │
 ├── .gitignore
-└── README.md</code></pre>
+└── README.md
+```
 
-<hr>
+---
 
-<h2 id="architecture" class="section-anchor">🏗️ Application Architecture</h2>
+## Application Architecture
 
-<p>The project follows a separate frontend/backend architecture.</p>
+The project follows a separate frontend/backend architecture.
 
-<pre><code>                    ┌─────────────────────┐
+```text
+                    ┌─────────────────────┐
                     │       Student       │
                     └──────────┬──────────┘
                                │
@@ -397,51 +202,47 @@
               │                                 │
               └──────────────┐        ┌─────────┘
                              ▼        ▼
-                          Cloudinary</code></pre>
+                          Cloudinary
+```
 
-<hr>
+---
 
-<h2 id="auth" class="section-anchor">🔐 Authentication</h2>
+## Authentication
 
-<p>Authentication is implemented using Clerk.</p>
+Authentication is implemented using Clerk.
 
-<table>
-  <thead>
-    <tr><th>Layer</th><th>Technology</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Frontend</td><td><code>@clerk/clerk-react</code></td></tr>
-    <tr><td>Backend</td><td><code>@clerk/express</code></td></tr>
-  </tbody>
-</table>
+| Layer | Technology |
+|-------|------------|
+| Frontend | `@clerk/clerk-react` |
+| Backend | `@clerk/express` |
 
-<p>Clerk middleware is registered in the Express application:</p>
+Clerk middleware is registered in the Express application:
 
-<pre><code>app.use(clerkMiddleware());</code></pre>
+```js
+app.use(clerkMiddleware());
+```
 
-<p>This allows authenticated user information to be accessed from backend requests.</p>
+This allows authenticated user information to be accessed from backend requests.
 
-<h3>👨‍🏫 Educator Authorization</h3>
+### Educator Authorization
 
-<p>Educator-only routes are protected using the <code>protectEducator</code> middleware.</p>
+Educator-only routes are protected using the `protectEducator` middleware.
 
-<p>The middleware retrieves the authenticated Clerk user and checks:</p>
+The middleware retrieves the authenticated Clerk user and checks:
 
-<pre><code>response.publicMetadata.role === 'educator';</code></pre>
+```js
+response.publicMetadata.role === 'educator';
+```
 
-<p>Only users with the educator role can access protected educator operations.</p>
+Only users with the educator role can access protected educator operations.
 
-<table>
-  <thead>
-    <tr><th>Role</th><th>Access</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>educator</code></td><td>Allowed</td></tr>
-    <tr><td>Other</td><td>Unauthorized</td></tr>
-  </tbody>
-</table>
+| Role | Access |
+|------|--------|
+| `educator` | Allowed |
+| Other | Unauthorized |
 
-<pre><code>Authenticated User
+```text
+Authenticated User
         │
         ▼
    Clerk Middleware
@@ -457,109 +258,101 @@ Check publicMetadata.role
 educator   other
    │         │
    ▼         ▼
- Allow    Unauthorized</code></pre>
+ Allow    Unauthorized
+```
 
-<hr>
+---
 
-<h2 id="api" class="section-anchor">📚 API Documentation</h2>
+## API Documentation
 
-<p>The backend exposes REST APIs under the following prefixes:</p>
+The backend exposes REST APIs under the following prefixes:
 
-<table>
-  <thead>
-    <tr><th>Prefix</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>/api/educator</code></td><td>Educator operations</td></tr>
-    <tr><td><code>/api/course</code></td><td>Course operations</td></tr>
-    <tr><td><code>/api/user</code></td><td>User operations</td></tr>
-  </tbody>
-</table>
+| Prefix | Description |
+|--------|-------------|
+| `/api/educator` | Educator operations |
+| `/api/course` | Course operations |
+| `/api/user` | User operations |
 
-<h3>👨‍🏫 Educator API</h3>
+### Educator API
 
-<p><strong>Base URL:</strong> <code>/api/educator</code></p>
+**Base URL:** `/api/educator`
 
-<table>
-  <thead>
-    <tr><th>Method</th><th>Endpoint</th><th>Description</th><th>Protection</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>GET</td><td><code>/update-role</code></td><td>Update user role to educator</td><td>Clerk</td></tr>
-    <tr><td>POST</td><td><code>/add-course</code></td><td>Create a new course</td><td>Educator</td></tr>
-    <tr><td>GET</td><td><code>/courses</code></td><td>Get educator courses</td><td>Educator</td></tr>
-    <tr><td>GET</td><td><code>/dashboard</code></td><td>Get educator dashboard data</td><td>Educator</td></tr>
-    <tr><td>GET</td><td><code>/enrolled-students</code></td><td>Get enrolled students data</td><td>Educator</td></tr>
-  </tbody>
-</table>
+| Method | Endpoint | Description | Protection |
+|--------|----------|-------------|------------|
+| GET | `/update-role` | Update user role to educator | Clerk |
+| POST | `/add-course` | Create a new course | Educator |
+| GET | `/courses` | Get educator courses | Educator |
+| GET | `/dashboard` | Get educator dashboard data | Educator |
+| GET | `/enrolled-students` | Get enrolled students data | Educator |
 
-<h4>Add Course</h4>
+#### Add Course
 
-<pre><code>POST /api/educator/add-course</code></pre>
+```http
+POST /api/educator/add-course
+```
 
-<p>The endpoint accepts a course image through <code>multipart/form-data</code>. The image field is <code>image</code>.</p>
+The endpoint accepts a course image through `multipart/form-data`. The image field is `image`.
 
-<p>Multer handles the uploaded file before the request reaches the course controller.</p>
+Multer handles the uploaded file before the request reaches the course controller.
 
-<h3>📖 Course API</h3>
+### 📖 Course API
 
-<p><strong>Base URL:</strong> <code>/api/course</code></p>
+**Base URL:** `/api/course`
 
-<table>
-  <thead>
-    <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>GET</td><td><code>/all</code></td><td>Get all courses</td></tr>
-    <tr><td>GET</td><td><code>/:id</code></td><td>Get course details by ID</td></tr>
-  </tbody>
-</table>
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/all` | Get all courses |
+| GET | `/:id` | Get course details by ID |
 
-<h4>Get All Courses</h4>
+#### Get All Courses
 
-<pre><code>GET /api/course/all</code></pre>
+```http
+GET /api/course/all
+```
 
-<h4>Get Course By ID</h4>
+#### Get Course By ID
 
-<pre><code>GET /api/course/:id</code></pre>
+```http
+GET /api/course/:id
+```
 
-<h3>👤 User API</h3>
+### User API
 
-<p><strong>Base URL:</strong> <code>/api/user</code></p>
+**Base URL:** `/api/user`
 
-<table>
-  <thead>
-    <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>GET</td><td><code>/data</code></td><td>Get user data</td></tr>
-    <tr><td>POST</td><td><code>/purchase</code></td><td>Purchase a course</td></tr>
-    <tr><td>GET</td><td><code>/enrolled-courses</code></td><td>Get enrolled courses</td></tr>
-    <tr><td>POST</td><td><code>/update-course-progress</code></td><td>Update course progress</td></tr>
-    <tr><td>POST</td><td><code>/get-course-progress</code></td><td>Get course progress</td></tr>
-    <tr><td>POST</td><td><code>/add-rating</code></td><td>Add course rating</td></tr>
-  </tbody>
-</table>
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/data` | Get user data |
+| POST | `/purchase` | Purchase a course |
+| GET | `/enrolled-courses` | Get enrolled courses |
+| POST | `/update-course-progress` | Update course progress |
+| POST | `/get-course-progress` | Get course progress |
+| POST | `/add-rating` | Add course rating |
 
-<hr>
+---
 
-<h2 id="stripe" class="section-anchor">💳 Stripe Integration</h2>
+## 💳 Stripe Integration
 
-<p>Stripe is used for course purchasing.</p>
+Stripe is used for course purchasing.
 
-<p>The backend exposes a Stripe webhook endpoint:</p>
+The backend exposes a Stripe webhook endpoint:
 
-<pre><code>POST /stripe</code></pre>
+```http
+POST /stripe
+```
 
-<p>The webhook uses:</p>
+The webhook uses:
 
-<pre><code>express.raw({ type: 'application/json' });</code></pre>
+```js
+express.raw({ type: 'application/json' });
+```
 
-<p>This preserves the raw request body required for Stripe webhook verification/processing.</p>
+This preserves the raw request body required for Stripe webhook verification/processing.
 
-<h3>Payment Flow</h3>
+### Payment Flow
 
-<pre><code>Student
+```text
+Student
    │
    ▼
 Select Course
@@ -577,39 +370,36 @@ Stripe Webhook
 Backend
    │
    ▼
-Update Enrollment / Purchase Data</code></pre>
+Update Enrollment / Purchase Data
+```
 
-<hr>
+---
 
-<h2 id="webhooks" class="section-anchor">🔔 Webhooks</h2>
+## Webhooks
 
-<p>The backend handles two webhook integrations.</p>
+The backend handles two webhook integrations.
 
-<table>
-  <thead>
-    <tr><th>Webhook</th><th>Endpoint</th><th>Handler</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Clerk Webhook</td><td><code>POST /clerk</code></td><td><code>clerkWebhooks</code></td></tr>
-    <tr><td>Stripe Webhook</td><td><code>POST /stripe</code></td><td><code>stripeWebhooks</code></td></tr>
-  </tbody>
-</table>
+| Webhook | Endpoint | Handler |
+|---------|----------|---------|
+| Clerk Webhook | `POST /clerk` | `clerkWebhooks` |
+| Stripe Webhook | `POST /stripe` | `stripeWebhooks` |
 
-<p>Both webhook handlers are implemented in <code>server/controllers/webhooks.js</code>.</p>
+Both webhook handlers are implemented in `server/controllers/webhooks.js`.
 
-<hr>
+---
 
-<h2 id="cloudinary" class="section-anchor">☁️ Cloudinary</h2>
+## ☁️ Cloudinary
 
-<p>Cloudinary is used for cloud-based media storage.</p>
+Cloudinary is used for cloud-based media storage.
 
-<p><strong>Configuration:</strong> <code>server/configs/cloudinary.js</code></p>
+**Configuration:** `server/configs/cloudinary.js`
 
-<p>Course images are uploaded using: <strong>Multer → Cloudinary</strong></p>
+Course images are uploaded using: **Multer → Cloudinary**
 
-<p>The general flow is:</p>
+The general flow is:
 
-<pre><code>Frontend
+```text
+Frontend
    │
    ▼
 Course Image
@@ -624,57 +414,49 @@ Cloudinary
 Image URL
    │
    ▼
-Course Data</code></pre>
+Course Data
+```
 
-<hr>
+---
 
-<h2 id="mongodb" class="section-anchor">🗄️ MongoDB</h2>
+## 🗄️ MongoDB
 
-<p>The application uses MongoDB as its primary database.</p>
+The application uses MongoDB as its primary database.
 
-<table>
-  <thead>
-    <tr><th>Item</th><th>Location</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>MongoDB Config</td><td><code>server/configs/mongodb.js</code></td></tr>
-    <tr><td>ODM</td><td>Mongoose</td></tr>
-    <tr><td>Initialization</td><td>On Express app start</td></tr>
-  </tbody>
-</table>
+| Item | Location |
+|------|----------|
+| MongoDB Config | `server/configs/mongodb.js` |
+| ODM | Mongoose |
+| Initialization | On Express app start |
 
-<p>Mongoose is used to interact with MongoDB. Database initialization happens when the Express application starts.</p>
+Mongoose is used to interact with MongoDB. Database initialization happens when the Express application starts.
 
-<hr>
+---
 
-<h2 id="env" class="section-anchor">⚙️ Environment Variables</h2>
+## ⚙️ Environment Variables
 
-<p>Create environment files locally for the required credentials and configuration.</p>
+Create environment files locally for the required credentials and configuration.
 
-<blockquote>⚠️ Do not commit secrets to GitHub.</blockquote>
+>  **Do not commit secrets to GitHub.**
 
-<h3>Server Environment</h3>
+### Server Environment
 
-<p>Create <code>server/.env</code> with the following variables:</p>
+Create `server/.env` with the following variables:
 
-<table>
-  <thead>
-    <tr><th>Variable</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>PORT</code></td><td>Server port (e.g., 5000)</td></tr>
-    <tr><td><code>MONGODB_URI</code></td><td>MongoDB connection string</td></tr>
-    <tr><td><code>CLERK_SECRET_KEY</code></td><td>Clerk secret key</td></tr>
-    <tr><td><code>CLERK_WEBHOOK_SECRET</code></td><td>Clerk webhook secret</td></tr>
-    <tr><td><code>STRIPE_SECRET_KEY</code></td><td>Stripe secret key</td></tr>
-    <tr><td><code>STRIPE_WEBHOOK_SECRET</code></td><td>Stripe webhook secret</td></tr>
-    <tr><td><code>CLOUDINARY_CLOUD_NAME</code></td><td>Cloudinary cloud name</td></tr>
-    <tr><td><code>CLOUDINARY_API_KEY</code></td><td>Cloudinary API key</td></tr>
-    <tr><td><code>CLOUDINARY_API_SECRET</code></td><td>Cloudinary API secret</td></tr>
-  </tbody>
-</table>
+| Variable | Description |
+|----------|-------------|
+| `PORT` | Server port (e.g., 5000) |
+| `MONGODB_URI` | MongoDB connection string |
+| `CLERK_SECRET_KEY` | Clerk secret key |
+| `CLERK_WEBHOOK_SECRET` | Clerk webhook secret |
+| `STRIPE_SECRET_KEY` | Stripe secret key |
+| `STRIPE_WEBHOOK_SECRET` | Stripe webhook secret |
+| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
+| `CLOUDINARY_API_KEY` | Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | Cloudinary API secret |
 
-<pre><code>PORT=5000
+```env
+PORT=5000
 
 MONGODB_URI=your_mongodb_connection_string
 
@@ -686,104 +468,105 @@ STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 
 CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
 CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret</code></pre>
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+```
 
-<p>Use the exact variable names expected by your configuration files. The names above are examples of the required configuration categories.</p>
+Use the exact variable names expected by your configuration files. The names above are examples of the required configuration categories.
 
-<h3>Client Environment</h3>
+### Client Environment
 
-<p>Create <code>client/.env</code> with the following variables:</p>
+Create `client/.env` with the following variables:
 
-<table>
-  <thead>
-    <tr><th>Variable</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>VITE_CLERK_PUBLISHABLE_KEY</code></td><td>Clerk publishable key</td></tr>
-    <tr><td><code>VITE_API_URL</code></td><td>Backend API URL</td></tr>
-  </tbody>
-</table>
+| Variable | Description |
+|----------|-------------|
+| `VITE_CLERK_PUBLISHABLE_KEY` | Clerk publishable key |
+| `VITE_API_URL` | Backend API URL |
 
-<pre><code>VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-VITE_API_URL=your_backend_url</code></pre>
+```env
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+VITE_API_URL=your_backend_url
+```
 
-<blockquote>🔒 Never expose secret keys in the client-side environment.</blockquote>
+>  **Never expose secret keys in the client-side environment.**
 
-<hr>
+---
 
-<h2 id="installation" class="section-anchor">📦 Installation</h2>
+##  Installation
 
-<p>Clone the repository:</p>
+Clone the repository:
 
-<pre><code>git clone &lt;YOUR_REPOSITORY_URL&gt;</code></pre>
+```bash
+git clone <YOUR_REPOSITORY_URL>
+```
 
-<p>Move into the project:</p>
+Move into the project:
 
-<pre><code>cd lms-full-stack</code></pre>
+```bash
+cd lms-full-stack
+```
 
-<h3>Frontend Installation</h3>
+### Frontend Installation
 
-<table>
-  <thead>
-    <tr><th>Command</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>cd client</code></td><td>Move into client directory</td></tr>
-    <tr><td><code>npm install</code></td><td>Install dependencies</td></tr>
-    <tr><td><code>npm run dev</code></td><td>Start development server</td></tr>
-    <tr><td><code>npm run build</code></td><td>Build production frontend</td></tr>
-    <tr><td><code>npm run preview</code></td><td>Preview production build</td></tr>
-    <tr><td><code>npm run lint</code></td><td>Run ESLint</td></tr>
-  </tbody>
-</table>
+| Command | Description |
+|---------|-------------|
+| `cd client` | Move into client directory |
+| `npm install` | Install dependencies |
+| `npm run dev` | Start development server |
+| `npm run build` | Build production frontend |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
 
-<pre><code>cd client
+```bash
+cd client
 npm install
-npm run dev</code></pre>
+npm run dev
+```
 
-<h3>Backend Installation</h3>
+### Backend Installation
 
-<table>
-  <thead>
-    <tr><th>Command</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>cd server</code></td><td>Move into server directory</td></tr>
-    <tr><td><code>npm install</code></td><td>Install dependencies</td></tr>
-    <tr><td><code>npm run server</code></td><td>Start development server (Nodemon)</td></tr>
-    <tr><td><code>npm start</code></td><td>Start production server</td></tr>
-  </tbody>
-</table>
+| Command | Description |
+|---------|-------------|
+| `cd server` | Move into server directory |
+| `npm install` | Install dependencies |
+| `npm run server` | Start development server (Nodemon) |
+| `npm start` | Start production server |
 
-<pre><code>cd server
+```bash
+cd server
 npm install
-npm run server</code></pre>
+npm run server
+```
 
-<hr>
+---
 
-<h2 id="running" class="section-anchor">▶️ Running the Full Project</h2>
+##  Running the Full Project
 
-<p>Run the backend first:</p>
+Run the backend first:
 
-<pre><code>cd server
+```bash
+cd server
 npm install
-npm run server</code></pre>
+npm run server
+```
 
-<p>Then start the frontend in another terminal:</p>
+Then start the frontend in another terminal:
 
-<pre><code>cd client
+```bash
+cd client
 npm install
-npm run dev</code></pre>
+npm run dev
+```
 
-<p>The frontend communicates with the Express backend through HTTP API requests.</p>
+The frontend communicates with the Express backend through HTTP API requests.
 
-<hr>
+---
 
-<h2 id="user-flow" class="section-anchor">🔄 Main User Flow</h2>
+##  Main User Flow
 
-<h3>Student Flow</h3>
+### Student Flow
 
-<pre><code>Register / Login with Clerk
+```text
+Register / Login with Clerk
           │
           ▼
      Browse Courses
@@ -807,11 +590,13 @@ npm run dev</code></pre>
    Track Course Progress
           │
           ▼
-       Add Rating</code></pre>
+       Add Rating
+```
 
-<h3>Educator Flow</h3>
+### Educator Flow
 
-<pre><code>Login with Clerk
+```text
+Login with Clerk
       │
       ▼
 Update Role to Educator
@@ -833,60 +618,65 @@ Cloudinary
 Published Course
       │
       ▼
-View Enrolled Students</code></pre>
+View Enrolled Students
+```
 
-<hr>
+---
 
-<h2 class="section-anchor">🧩 Backend Folder Responsibilities</h2>
+##  Backend Folder Responsibilities
 
-<table>
-  <thead>
-    <tr><th>Folder</th><th>Responsibility</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>configs/</code></td><td>External service configuration</td></tr>
-    <tr><td><code>controllers/</code></td><td>Backend business logic</td></tr>
-    <tr><td><code>middlewares/</code></td><td>Reusable Express middleware</td></tr>
-    <tr><td><code>models/</code></td><td>MongoDB/Mongoose models</td></tr>
-    <tr><td><code>routes/</code></td><td>Express route definitions</td></tr>
-  </tbody>
-</table>
+| Folder | Responsibility |
+|--------|----------------|
+| `configs/` | External service configuration |
+| `controllers/` | Backend business logic |
+| `middlewares/` | Reusable Express middleware |
+| `models/` | MongoDB/Mongoose models |
+| `routes/` | Express route definitions |
 
-<h3><code>configs/</code></h3>
+### `configs/`
 
-<pre><code>configs/
+```text
+configs/
 ├── cloudinary.js
 ├── mongodb.js
-└── multer.js</code></pre>
+└── multer.js
+```
 
-<h3><code>controllers/</code></h3>
+### `controllers/`
 
-<pre><code>controllers/
+```text
+controllers/
 ├── courseController.js
 ├── educatorController.js
 ├── userController.js
-└── webhooks.js</code></pre>
+└── webhooks.js
+```
 
-<h3><code>middlewares/</code></h3>
+### `middlewares/`
 
-<pre><code>authMiddleware.js</code></pre>
+```text
+authMiddleware.js
+```
 
-<p>The middleware currently includes educator route protection.</p>
+The middleware currently includes educator route protection.
 
-<h3><code>routes/</code></h3>
+### `routes/`
 
-<pre><code>routes/
+```text
+routes/
 ├── courseRoute.js
 ├── educatorRoutes.js
-└── userRoutes.js</code></pre>
+└── userRoutes.js
+```
 
-<hr>
+---
 
-<h2 class="section-anchor">🎨 Frontend Structure</h2>
+##  Frontend Structure
 
-<p>The React application is organized into reusable components, shared context, assets, and role-specific pages.</p>
+The React application is organized into reusable components, shared context, assets, and role-specific pages.
 
-<pre><code>client/src/
+```text
+client/src/
 │
 ├── assets/
 │
@@ -896,21 +686,282 @@ View Enrolled Students</code></pre>
 │
 └── pages/
     ├── educator/
-    └── student/</code></pre>
+    └── student/
+```
 
-<table>
-  <thead>
-    <tr><th>Folder</th><th>Purpose</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>components/</code></td><td>Reusable React UI components</td></tr>
-    <tr><td><code>context/</code></td><td>Application-level React Context/state management</td></tr>
-    <tr><td><code>pages/student/</code></td><td>Student-specific pages and functionality</td></tr>
-    <tr><td><code>pages/educator/</code></td><td>Educator-specific pages and functionality</td></tr>
-    <tr><td><code>assets/</code></td><td>Frontend assets such as images and static resources</td></tr>
-  </tbody>
-</table>
+| Folder | Purpose |
+|--------|---------|
+| `components/` | Reusable React UI components |
+| `context/` | Application-level React Context/state management |
+| `pages/student/` | Student-specific pages and functionality |
+| `pages/educator/` | Educator-specific pages and functionality |
+| `assets/` | Frontend assets such as images and static resources |
 
-<hr>
+---
 
-<h2 id="deployment" class
+##  Deployment
+
+Both frontend and backend contain Vercel configuration files:
+
+| File | Purpose |
+|------|---------|
+| `client/vercel.json` | Frontend deployment config |
+| `server/vercel.json` | Backend deployment config |
+
+This allows the frontend and backend to be deployed separately.
+
+### Production Architecture
+
+```text
+                 ┌───────────────────┐
+                 │      Users        │
+                 └─────────┬─────────┘
+                           │
+                           ▼
+                 ┌───────────────────┐
+                 │ React / Vite App  │
+                 │      Vercel       │
+                 └─────────┬─────────┘
+                           │
+                        Axios
+                           │
+                           ▼
+                 ┌───────────────────┐
+                 │ Express API       │
+                 │      Vercel       │
+                 └─────────┬─────────┘
+                           │
+            ┌──────────────┼──────────────┐
+            │              │              │
+            ▼              ▼              ▼
+         MongoDB         Stripe       Cloudinary
+            │
+            ▼
+         LMS Data
+```
+
+---
+
+##  Security
+
+Important security practices:
+
+| Practice | Description |
+|----------|-------------|
+| Protect `.env` files | Keep `.env` files out of Git |
+| Clerk keys | Never expose Clerk secret keys in the frontend |
+| Stripe keys | Never expose Stripe secret keys in the frontend |
+| Cloudinary secrets | Never expose Cloudinary API secrets publicly |
+| Route protection | Protect educator-specific API routes |
+| Auth validation | Validate authentication before accessing protected resources |
+| CORS | Configure CORS for trusted frontend origins |
+| HTTPS | Use HTTPS in production |
+| Dependencies | Keep third-party dependencies updated |
+
+---
+
+##  Development Checklist
+
+Before deploying, verify:
+
+- [ ] Clerk authentication works
+- [ ] Student login works
+- [ ] Educator role update works
+- [ ] Educator authorization works
+- [ ] Course listing works
+- [ ] Course details work
+- [ ] Course creation works
+- [ ] Course image upload works
+- [ ] Cloudinary upload works
+- [ ] Course purchase works
+- [ ] Stripe webhook works
+- [ ] Student enrollment works
+- [ ] Course progress updates correctly
+- [ ] Course ratings work
+- [ ] Educator dashboard works
+- [ ] Enrolled student data loads
+- [ ] Production CORS is configured
+- [ ] Production environment variables are configured
+
+---
+
+##  Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Frontend cannot connect to backend | Check `VITE_API_URL` and verify backend is running |
+| Clerk authentication not working | Verify Clerk publishable key, secret key, frontend config, middleware config, and webhook config |
+| Educator routes return Unauthorized | Check `publicMetadata.role` — must be `educator` |
+| Course image upload fails | Check Multer config, Cloudinary credentials, and `image` field name |
+| Stripe webhook fails | Ensure raw body is used and verify webhook secret and endpoint config |
+
+### Frontend cannot connect to backend
+
+Check the frontend API URL and verify that the backend is running.
+
+```env
+VITE_API_URL=your_backend_url
+```
+
+Also check the browser's network console for failed API requests.
+
+### Clerk authentication is not working
+
+Verify:
+
+- Clerk publishable key
+- Clerk secret key
+- Clerk frontend configuration
+- Clerk middleware configuration
+- Clerk webhook configuration
+
+### Educator routes return Unauthorized
+
+Check the user's Clerk metadata:
+
+```text
+publicMetadata.role
+```
+
+The educator middleware expects `educator` as the role value.
+
+### Course image upload fails
+
+Check:
+
+- Multer configuration
+- Cloudinary credentials
+- File field name
+
+The course creation endpoint expects the `image` field.
+
+### Stripe webhook fails
+
+Make sure the Stripe webhook endpoint receives the request using the raw body:
+
+```js
+express.raw({ type: 'application/json' });
+```
+
+Also verify the Stripe webhook secret and endpoint configuration.
+
+---
+
+## 📸 Screenshots
+
+Add application screenshots here when available.
+
+Recommended structure:
+
+```text
+docs/
+└── screenshots/
+    ├── home.png
+    ├── courses.png
+    ├── course-details.png
+    ├── student-dashboard.png
+    ├── educator-dashboard.png
+    └── course-player.png
+```
+
+Example:
+
+```markdown
+![Home Page](docs/screenshots/home.png)
+![Student Dashboard](docs/screenshots/student-dashboard.png)
+![Educator Dashboard](docs/screenshots/educator-dashboard.png)
+```
+
+---
+
+## 🔮 Future Improvements
+
+Possible future enhancements include:
+
+- Course search and filtering
+- Course categories
+- Course certificates
+- Quizzes and assessments
+- Assignments
+- Student discussions
+- Course reviews and comments
+- Notifications
+- Email notifications
+- Password/account management
+- Admin dashboard
+- Advanced educator analytics
+- Course completion certificates
+- Wishlist functionality
+- Improved payment management
+- Mobile application
+
+---
+
+##  Contributing
+
+Contributions are welcome.
+
+1. **Fork the repository** — Create your own fork of the project.
+
+2. **Create a feature branch**
+
+   ```bash
+   git checkout -b feature/new-feature
+   ```
+
+3. **Make your changes** — Implement and test your changes.
+
+4. **Commit your changes**
+
+   ```bash
+   git add .
+   git commit -m "Add new feature"
+   ```
+
+5. **Push your branch**
+
+   ```bash
+   git push origin feature/new-feature
+   ```
+
+6. **Create a Pull Request**
+
+---
+
+##  License
+
+This project currently uses the license configuration specified in the backend package: **ISC**
+
+If you publish the project publicly, consider adding a `LICENSE` file to the root of the repository.
+
+---
+
+##  Author
+
+**Kratika Singh**
+
+| Platform | Link |
+|----------|------|
+| GitHub | [https://github.com/kratikasingh517-netizen](https://github.com/kratikasingh517-netizen) |
+
+---
+
+
+##  Project Summary
+
+**LMS Full Stack** is a modern Learning Management System that combines a React/Vite frontend with a Node.js/Express backend.
+
+The application provides:
+
+-  Student course learning
+-  Educator course management
+-  Clerk authentication
+-  Educator role-based authorization
+-  Course management
+-  Stripe course payments
+-  Course progress tracking
+-  Course ratings
+-  Cloudinary media uploads
+-  MongoDB data storage
+-  Clerk and Stripe webhooks
+-  Vercel deployment support
