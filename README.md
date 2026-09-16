@@ -11,35 +11,57 @@ A full-stack Learning Management System (LMS) built with React, Vite, Node.js, E
 
 The platform provides separate experiences for students and educators. Students can explore and purchase courses, track their learning progress, and submit ratings. Educators can create and manage courses, view enrolled students, and access dashboard information.
 
+###  Live Links
+
+| Environment | URL |
+|-------------|-----|
+|  Frontend (Live Demo) | **[https://lms-full-stack-beige.vercel.app/](https://lms-full-stack-beige.vercel.app/)** |
+|  Backend API | **[https://lms-full-stack-server-sable.vercel.app/](https://lms-full-stack-server-sable.vercel.app/)** |
+
 ---
 
 ##  Table of Contents
 
 | # | Section |
 |---|---------|
-| 1 | [Features](#-features) |
-| 2 | [Tech Stack](#-tech-stack) |
-| 3 | [Project Structure](#-project-structure) |
-| 4 | [Application Architecture](#-application-architecture) |
-| 5 | [Authentication](#-authentication) |
-| 6 | [API Documentation](#-api-documentation) |
-| 7 | [Stripe Integration](#-stripe-integration) |
-| 8 | [Webhooks](#-webhooks) |
-| 9 | [Cloudinary](#-cloudinary) |
-| 10 | [MongoDB](#-mongodb) |
-| 11 | [Environment Variables](#-environment-variables) |
-| 12 | [Installation](#-installation) |
-| 13 | [Running the Full Project](#-running-the-full-project) |
-| 14 | [Main User Flow](#-main-user-flow) |
-| 15 | [Deployment](#-deployment) |
-| 16 | [Security](#-security) |
-| 17 | [Development Checklist](#-development-checklist) |
-| 18 | [Troubleshooting](#-troubleshooting) |
-| 19 | [Screenshots](#-screenshots) |
-| 20 | [Future Improvements](#-future-improvements) |
-| 21 | [Contributing](#-contributing) |
-| 22 | [License](#-license) |
-| 23 | [Author](#-author) |
+| 1 | [Live Links](#-live-links) |
+| 2 | [Features](#-features) |
+| 3 | [Tech Stack](#-tech-stack) |
+| 4 | [Project Structure](#-project-structure) |
+| 5 | [Application Architecture](#-application-architecture) |
+| 6 | [Authentication](#-authentication) |
+| 7 | [API Documentation](#-api-documentation) |
+| 8 | [Stripe Integration](#-stripe-integration) |
+| 9 | [Webhooks](#-webhooks) |
+| 10 | [Cloudinary](#-cloudinary) |
+| 11 | [MongoDB](#-mongodb) |
+| 12 | [Environment Variables](#-environment-variables) |
+| 13 | [Installation](#-installation) |
+| 14 | [Running the Full Project](#-running-the-full-project) |
+| 15 | [Main User Flow](#-main-user-flow) |
+| 16 | [Deployment](#-deployment) |
+| 17 | [Security](#-security) |
+| 18 | [Development Checklist](#-development-checklist) |
+| 19 | [Troubleshooting](#-troubleshooting) |
+| 20 | [Screenshots](#-screenshots) |
+| 21 | [Future Improvements](#-future-improvements) |
+| 22 | [Contributing](#-contributing) |
+| 23 | [License](#-license) |
+| 24 | [Author](#-author) |
+
+---
+
+##  Live Links
+
+The application is deployed and live on **Vercel**:
+
+| Environment | URL |
+|-------------|-----|
+|  **Frontend (Live Demo)** | [https://lms-full-stack-beige.vercel.app/](https://lms-full-stack-beige.vercel.app/) |
+|  **Backend API** | [https://lms-full-stack-server-sable.vercel.app/](https://lms-full-stack-server-sable.vercel.app/) |
+|  Repository | [GitHub](https://github.com/kratikasingh517-netizen) |
+
+>  **Tip:** Open the frontend live link to explore student and educator flows directly in the browser.
 
 ---
 
@@ -117,7 +139,7 @@ The platform provides separate experiences for students and educators. Students 
 
 ---
 
-## Project Structure
+##  Project Structure
 
 ```text
 lms-full-stack/
@@ -171,7 +193,7 @@ lms-full-stack/
 
 ---
 
-## Application Architecture
+##  Application Architecture
 
 The project follows a separate frontend/backend architecture.
 
@@ -207,7 +229,7 @@ The project follows a separate frontend/backend architecture.
 
 ---
 
-## Authentication
+##  Authentication
 
 Authentication is implemented using Clerk.
 
@@ -224,7 +246,7 @@ app.use(clerkMiddleware());
 
 This allows authenticated user information to be accessed from backend requests.
 
-### Educator Authorization
+###  Educator Authorization
 
 Educator-only routes are protected using the `protectEducator` middleware.
 
@@ -263,7 +285,7 @@ educator   other
 
 ---
 
-## API Documentation
+##  API Documentation
 
 The backend exposes REST APIs under the following prefixes:
 
@@ -273,7 +295,9 @@ The backend exposes REST APIs under the following prefixes:
 | `/api/course` | Course operations |
 | `/api/user` | User operations |
 
-### Educator API
+**Live Backend Base URL:** [https://lms-full-stack-server-sable.vercel.app/](https://lms-full-stack-server-sable.vercel.app/)
+
+###  Educator API
 
 **Base URL:** `/api/educator`
 
@@ -295,7 +319,7 @@ The endpoint accepts a course image through `multipart/form-data`. The image fie
 
 Multer handles the uploaded file before the request reaches the course controller.
 
-### 📖 Course API
+###  Course API
 
 **Base URL:** `/api/course`
 
@@ -316,7 +340,7 @@ GET /api/course/all
 GET /api/course/:id
 ```
 
-### User API
+###  User API
 
 **Base URL:** `/api/user`
 
@@ -331,7 +355,7 @@ GET /api/course/:id
 
 ---
 
-## 💳 Stripe Integration
+##  Stripe Integration
 
 Stripe is used for course purchasing.
 
@@ -375,7 +399,7 @@ Update Enrollment / Purchase Data
 
 ---
 
-## Webhooks
+##  Webhooks
 
 The backend handles two webhook integrations.
 
@@ -388,7 +412,7 @@ Both webhook handlers are implemented in `server/controllers/webhooks.js`.
 
 ---
 
-## ☁️ Cloudinary
+##  Cloudinary
 
 Cloudinary is used for cloud-based media storage.
 
@@ -419,7 +443,7 @@ Course Data
 
 ---
 
-## 🗄️ MongoDB
+##  MongoDB
 
 The application uses MongoDB as its primary database.
 
@@ -433,7 +457,7 @@ Mongoose is used to interact with MongoDB. Database initialization happens when 
 
 ---
 
-## ⚙️ Environment Variables
+##  Environment Variables
 
 Create environment files locally for the required credentials and configuration.
 
@@ -484,7 +508,7 @@ Create `client/.env` with the following variables:
 
 ```env
 VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-VITE_API_URL=your_backend_url
+VITE_API_URL=https://lms-full-stack-server-sable.vercel.app
 ```
 
 >  **Never expose secret keys in the client-side environment.**
@@ -701,6 +725,15 @@ client/src/
 
 ##  Deployment
 
+The application is deployed on **Vercel**.
+
+###  Live Links
+
+| Environment | URL |
+|-------------|-----|
+|  **Frontend (Live Demo)** | [https://lms-full-stack-beige.vercel.app/](https://lms-full-stack-beige.vercel.app/) |
+|  **Backend API** | [https://lms-full-stack-server-sable.vercel.app/](https://lms-full-stack-server-sable.vercel.app/) |
+
 Both frontend and backend contain Vercel configuration files:
 
 | File | Purpose |
@@ -800,7 +833,7 @@ Before deploying, verify:
 Check the frontend API URL and verify that the backend is running.
 
 ```env
-VITE_API_URL=your_backend_url
+VITE_API_URL=https://lms-full-stack-server-sable.vercel.app
 ```
 
 Also check the browser's network console for failed API requests.
@@ -928,7 +961,7 @@ Contributions are welcome.
 
 ---
 
-##  License
+## 📄 License
 
 This project currently uses the license configuration specified in the backend package: **ISC**
 
@@ -936,16 +969,23 @@ If you publish the project publicly, consider adding a `LICENSE` file to the roo
 
 ---
 
-##  Author
+## 👨‍💻 Author
 
 **Kratika Singh**
 
 | Platform | Link |
 |----------|------|
 | GitHub | [https://github.com/kratikasingh517-netizen](https://github.com/kratikasingh517-netizen) |
+| 🌐 Frontend (Live) | [https://lms-full-stack-beige.vercel.app/](https://lms-full-stack-beige.vercel.app/) |
+| 🖥️ Backend API | [https://lms-full-stack-server-sable.vercel.app/](https://lms-full-stack-server-sable.vercel.app/) |
 
 ---
 
+## ⭐ Support
+
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
+
+---
 
 ##  Project Summary
 
@@ -965,3 +1005,14 @@ The application provides:
 -  MongoDB data storage
 -  Clerk and Stripe webhooks
 -  Vercel deployment support
+
+---
+
+##  Live Links
+
+| Environment | URL |
+|-------------|-----|
+|  **Frontend (Live Demo)** | [https://lms-full-stack-beige.vercel.app/](https://lms-full-stack-beige.vercel.app/) |
+|  **Backend API** | [https://lms-full-stack-server-sable.vercel.app/](https://lms-full-stack-server-sable.vercel.app/) |
+
+If you like this project, don't forget to ⭐ the repository!
