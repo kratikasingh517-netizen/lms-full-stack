@@ -14,7 +14,7 @@ const CallToAction = () => {
       </h1>
 
       <p className='text-gray-500 sm:text-sm'>
-        Incididunt sint fugiat pariatur cupidatat consectetur sit cillum anim id veniam aliqua proident excepteur commodo do ea.
+       Discover new skills, expand your knowledge, and learn at your own pace from anywhere in the world. Access engaging courses designed to help you learn, grow, and achieve your goals.
       </p>
 
       <div className='flex items-center font-medium gap-6 mt-4'>
